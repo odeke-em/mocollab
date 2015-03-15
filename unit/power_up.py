@@ -14,3 +14,6 @@ class PowerUp(BaseUnit):
         self._consume(consumer)
         self.deactivate()
         consumer._update_image()
+
+    def _consume(self, consumer):
+        pass

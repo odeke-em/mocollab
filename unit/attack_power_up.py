@@ -13,4 +13,7 @@ class AttackPowerUp(PowerUp):
         super().__init__(*args, **kwargs)
 
     def _consume(self, consumer):
-        consumer.increment_damage(self.reward_points) 
+        # Task 2: Clause 3 expectation, if of Transport type, pick it but
+        #         do not affect the transport
+        if consume.type != "Transport":
+            consumer.increment_damage(self.reward_points) 
