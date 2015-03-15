@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys, pygame
 from pygame.sprite import LayeredUpdates
 from collections import namedtuple
@@ -5,6 +6,8 @@ import tiles, unit, animation, gather
 from unit import *
 from effects.explosion import Explosion
 from sounds import SoundManager
+
+from unit import utils
 
 # Sound names
 SELECT_SOUND = "Select"
@@ -463,6 +466,9 @@ class GUI(LayeredUpdates):
             line = map_file.readline()
             if line == "":
                 raise Exception ("Expected end of unit definitions")
+        
+        mapping = utils.load_clauses_f(map_file, "POWER-UPS")
+        print("mapping", mapping)
         
     def on_click(self, e):
         """
