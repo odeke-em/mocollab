@@ -44,6 +44,7 @@ class BaseUnit(Sprite):
         
         #Default unit stats
         self.health = keywords.get('health', 10)
+        self.consumable = keywords.get('consumable', False)
         self.max_health = self.health
         self.speed = 5
         self.atk_range = 1
@@ -55,6 +56,9 @@ class BaseUnit(Sprite):
         self.move_sound = None
         self.hit_sound = None
         self.die_sound = "Explosion"
+
+        # Speed here
+        self.speed = keywords.get('speed', FRAME_MOVE_SPEED)
 
         #The phyiscal size for fitting in a transport
         self.unit_size = 20
@@ -242,8 +246,14 @@ class BaseUnit(Sprite):
             if not self._path:
                 #notify not moving
                 self._moving = False
-                if self.in_transport:
-                    self.in_transport.add_unit(self)
+                other = self.in_transport
+                if other:
+                    if not other.consumable:
+                        other.add_unit(self)
+                        return
+
+                    other.consume(self)
+                    
                 return
                 
             #There's a path to move on
@@ -308,6 +318,26 @@ class BaseUnit(Sprite):
         
         # Update the health graphic.
         self._update_image()
+
+    def increment_health(self, weight):
+        """
+        Increments the health of the unit
+        """
+        self.health += weight
+        self._update_image()
+
+    def increment_damage(self, weight):
+        """
+        Increments the damage of the unit
+        """
+        self.damage += weight
+        self._update_image()
+
+    def increment_speed(self, weight):
+        """
+        Increments the speed of the unit
+        """
+        self.speed += weight
         
     def move_cost(self, tile):
         """
@@ -350,10 +380,12 @@ class BaseUnit(Sprite):
             if (u.tile_x, u.tile_y) != pos:
                 continue
 
-            #if there is a unit there, check that it is a trasnport
+            #if there is a unit there, check if it is consumable
+            if not u.consumable:
+                # Next check that it is a trasnport
 
-            if u.type != "Transport" or not u.can_load(self):
-                return False
+                if u.type != "Transport" or not u.can_load(self):
+                    return False
 
         return self.is_passable(tile, pos)
         

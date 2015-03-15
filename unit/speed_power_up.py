@@ -3,7 +3,6 @@ import pygame
 from unit.power_up import PowerUp
 
 class SpeedPowerUp(PowerUp):
-    reward = 'speed'
     reward_points = 2
     sprite = pygame.image.load("assets/Speed_PUP.png")
 
@@ -12,3 +11,6 @@ class SpeedPowerUp(PowerUp):
         self._base_image = SpeedPowerUp.sprite
 
         super().__init__(*args, **kwargs)
+
+    def _consume(self, consumer):
+        consumer.increment_speed(self.reward_points) 
