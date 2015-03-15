@@ -50,8 +50,9 @@ BUTTON_DISABLED_COLOR = (64, 64, 64)
 
 # Names for the different teams
 TEAM_NAME = {
-    0: "green",
-    1: "red"
+    0:  "green",
+    1:  "red",
+    -1: "blue",
 }
 
 # Possible GUI modes
@@ -468,7 +469,28 @@ class GUI(LayeredUpdates):
                 raise Exception ("Expected end of unit definitions")
         
         mapping = utils.load_clauses_f(map_file, "POWER-UPS")
-        print("mapping", mapping)
+        powerup_translator = {
+            'Speed-PUP':  unit.speed_power_up.SpeedPowerUp,
+            'Health-PUP': unit.health_power_up.HealthPowerUp,
+            'Attack-PUP': unit.attack_power_up.AttackPowerUp,
+        }
+
+        for key, coords in mapping.items():
+            translator = powerup_translator.get(key, None)
+            if translator is None:
+                raise Exception("%s is an unknown powerup"%(key))
+
+            x, y, *rest = coords
+            pup_unit = translator(
+                    team=0,
+                    tile_x=int(x),
+                    tile_y=int(y),
+                    activate=True,
+                    angle=90)
+
+            self.update_unit_rect(pup_unit)
+            # print('pup_unit', pup_unit)
+        # print("mapping", mapping)
         
     def on_click(self, e):
         """
