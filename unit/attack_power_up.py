@@ -3,6 +3,7 @@ import pygame
 from unit.power_up import PowerUp
 
 class AttackPowerUp(PowerUp):
+    reward = 'damage'
     reward_points = 2
     sprite = pygame.image.load("assets/Damage_PUP.png")
 

@@ -52,7 +52,7 @@ BUTTON_DISABLED_COLOR = (64, 64, 64)
 TEAM_NAME = {
     0:  "green",
     1:  "red",
-    -1: "blue",
+    2: "blue",
 }
 
 # Possible GUI modes
@@ -483,9 +483,9 @@ class GUI(LayeredUpdates):
             x, y, *rest = coords
             pup_unit = translator(
                     team=0,
+                    activate=True,
                     tile_x=int(x),
                     tile_y=int(y),
-                    activate=True,
                     angle=90)
 
             self.update_unit_rect(pup_unit)

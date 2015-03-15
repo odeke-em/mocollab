@@ -43,7 +43,7 @@ class BaseUnit(Sprite):
         self.turn_state = [False, False]
         
         #Default unit stats
-        self.health = 10
+        self.health = keywords.get('health', 10)
         self.max_health = self.health
         self.speed = 5
         self.atk_range = 1

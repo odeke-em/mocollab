@@ -3,6 +3,7 @@ import pygame
 from unit.power_up import PowerUp
 
 class HealthPowerUp(PowerUp):
+    reward = 'health'
     reward_points = 10
     sprite = pygame.image.load("assets/Health_PUP.png")
 
