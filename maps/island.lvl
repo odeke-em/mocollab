@@ -6,6 +6,7 @@ Map: maps/island.gif
 UNITS START
 Anti-Air 0 22 22 180
 Transport 0 20 20 90 70
+Transport 0 20 22 90 50
 Jeep 0 19 20 90
 Jeep 0 20 22 180
 Tank 0 18 22 90
@@ -20,6 +21,7 @@ Bomber 0 27 26 180
 Carrier 0 27 27 0
 Fighter 0 26 27 180
 Anti-Air 1 9 6 0
+Transport 1 10 9 180 90
 Transport 1 11 8 270 70
 Jeep 1 11 9 270
 Jeep 1 9 8 0
