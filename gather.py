@@ -59,14 +59,15 @@ def gather(transport, unit_list, value):
 				weights[l][k] = weights[l-1][k - unitSize[l]] + unitValue[l]
 			else:
 				weights[l][k] = weights[l-1][k]
-	
+	print(weights)
 	# If the weight is not equal between weights[l][remain] and weights[l-1][remain]
 	# Then it is in the solution
 	for l in range(numUnits, 0, -1):
-		bestWeights = weights[l][remain] != weights[l-1][remain]
+		bestWeights = (weights[l][remain] != weights[l][remain-1])
 		if bestWeights:
 			bestUnits.append(unitSize[l-1])
-	
+	print(bestWeights)
+	print(bestUnits)
 	# Compares the weights from bestWeights against the weights of the units
 	# To see which individual units are in the solution
 	for p in unit_list:
@@ -76,6 +77,6 @@ def gather(transport, unit_list, value):
 			
 	# referenced pseudo-code for dynamic programming solution at
 	# http://en.wikipedia.org/wiki/Knapsack_problem
-	
+	print(gathered)
 	return gathered
 
