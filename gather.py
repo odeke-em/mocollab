@@ -65,13 +65,13 @@ def gather(transport, unit_list, value):
 	for l in range(numUnits, 0, -1):
 		bestWeights = weights[l][remain] != weights[l-1][remain]
 		if bestWeights:
-			bestUnits.ppend(unitSize[l-1]
+			bestUnits.append(unitSize[l-1])
 	
 	# Compares the weights from bestWeights against the weights of the units
 	# To see which individual units are in the solution
 	for p in unit_list:
 		for k in range(0, len(bestUnits)):
-			if p.unit_size = bestUnits[k]:
+			if p.unit_size == bestUnits[k]:
 				gathered.append(p)
 			
 	# referenced pseudo-code for dynamic programming solution at
