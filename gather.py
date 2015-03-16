@@ -66,7 +66,8 @@ def gather(transport, unit_list, value):
 		bestWeights = (weights[l][remain] != weights[l][remain-1])
 		if bestWeights:
 			bestUnits.append(unitSize[l-1])
-	print(bestWeights)
+		print(bestWeights)
+
 	print(bestUnits)
 	# Compares the weights from bestWeights against the weights of the units
 	# To see which individual units are in the solution

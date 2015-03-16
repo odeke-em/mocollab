@@ -248,11 +248,13 @@ class BaseUnit(Sprite):
                 self._moving = False
                 other = self.in_transport
                 if other:
-                    if not other.consumable:
-                        other.add_unit(self)
+                    if other.consumable:
+                        other.consume(self)
                         return
 
-                    other.consume(self)
+                    if other.can_load(self):
+                        other.add_unit(self)
+                        return
                     
                 return
                 
