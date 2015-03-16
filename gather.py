@@ -27,6 +27,7 @@ def gather(transport, unit_list, value):
 	gathered = list()
 	unitSize = list()
 	unitValue = list()
+	bestUnits = list()
 	# the unused capacity of the transport
 	remain = transport.capacity
 	
@@ -35,7 +36,6 @@ def gather(transport, unit_list, value):
 	
 	# Declares the array used for dynamic programming
 	weights = [[0 for i in range(remain + 1)] for j in range(numUnits +1)]
-	
 	# Original code
 	"""
 	for u in unit_list:
@@ -59,9 +59,23 @@ def gather(transport, unit_list, value):
 				weights[l][k] = weights[l-1][k - unitSize[l]] + unitValue[l]
 			else:
 				weights[l][k] = weights[l-1][k]
+	
+	# If the weight is not equal between weights[l][remain] and weights[l-1][remain]
+	# Then it is in the solution
+	for l in range(numUnits, 0, -1):
+		bestWeights = weights[l][remain] != weights[l-1][remain]
+		if bestWeights:
+			bestUnits.ppend(unitSize[l-1]
+	
+	# Compares the weights from bestWeights against the weights of the units
+	# To see which individual units are in the solution
+	for p in unit_list:
+		for k in range(0, len(bestUnits)):
+			if p.unit_size = bestUnits[k]:
+				gathered.append(p)
 			
-	print(weights)
-	# return the list of units from an optimal solution
-	# note, in particular, that we have not actuallyhttp://www.dreamincode.net/forums/topic/283621-error-typeerror-nonetype-object-is-not-subscriptable/ loaded them here
+	# referenced pseudo-code for dynamic programming solution at
+	# http://en.wikipedia.org/wiki/Knapsack_problem
+	
 	return gathered
 
