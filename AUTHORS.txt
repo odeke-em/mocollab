@@ -1,2 +1,2 @@
-Brennen McPhee
-Emmanuel Odeke
+Brennen McPhee <mcphee@ualberta.ca>
+Emmanuel Odeke <odeke@ualberta.ca>

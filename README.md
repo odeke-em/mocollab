@@ -137,3 +137,8 @@ http://www.freesound.org/people/qubodup/sounds/184365/
 
 **Bomb drop**
 http://www.freesound.org/people/club%20sound/sounds/104551/
+
+## References
+
++ Knapsack problem pseudo-code referenced from
+	http://en.wikipedia.org/wiki/Knapsack_problem
