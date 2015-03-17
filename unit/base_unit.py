@@ -57,9 +57,6 @@ class BaseUnit(Sprite):
         self.hit_sound = None
         self.die_sound = "Explosion"
 
-        # Speed here
-        self.speed = keywords.get('speed', FRAME_MOVE_SPEED)
-
         #The phyiscal size for fitting in a transport
         self.unit_size = 20
         self.capacity = -1

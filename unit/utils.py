@@ -16,9 +16,9 @@ def load_clauses_f(f, clause):
     >>> # To mimick a normal iterator for which '__next__'
     >>> # marches forward the head pointer
     >>> store = load_clauses_f(itr, 'POWER-UPS')
-    >>> store['Attack-PUP'] == ['15', '9']
+    >>> store['Attack-PUP'] == [['15', '9']]
     True
-    >>> store['Health-PUP'] == ['28', '21']
+    >>> store['Health-PUP'] == [['28', '21']]
     True
     """
     store = {}
@@ -52,7 +52,7 @@ def load_clauses_f(f, clause):
         if len(fields) <= 1:
             continue
         key, *rest = fields
-        store[key] = rest
+        store.setdefault(key, []).append(rest)
 
     return store
 
@@ -70,15 +70,18 @@ def load_clauses_f_map(f, clause, mapper):
     >>> # To mimick a normal iterator for which '__next__'
     >>> # marches forward the head pointer
     >>> store = load_clauses_f_map(itr, 'POWER-UPS', int)
-    >>> store['Attack-PUP'] == (95, 9,)
+    >>> store['Attack-PUP'] == [(95, 9,)]
     True
-    >>> store['Speed-PUP'] == (23, 8,)
+    >>> store['Speed-PUP'] == [(23, 8,)]
     True
     """
 
     fields_dict = load_clauses_f(f, clause)
-    for field, attributes in fields_dict.items():
-        fields_dict[field] = tuple(map(mapper, attributes))
+    for field, attrListing in fields_dict.items():
+        mapping = []
+        for attrs in attrListing:
+            mapping.append(tuple(map(mapper, attrs)))
+        fields_dict[field] = mapping
 
     return fields_dict
 

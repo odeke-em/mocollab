@@ -1,26 +1,22 @@
 **
 initial commit
+Added code from the TAs
 
 Date:   Sun Mar 8 17:00:53 2015 -0600
 
 **
-
 Added a PT-Boat unit to the game.
-
 Date:   Fri Mar 13 17:40:30 2015 -0600
 
 **
-
 added .gitignore + build.txt
+Build instructions for Linux
 
 Date:   Mon Feb 23 22:00:20 2015 -0700
 
 **
-
-removed *.pyc files
-
+removed *.pyc files and clutter
 Date:   Fri Mar 13 22:57:08 2015 -0600
-
 **
 
 parsed and split up

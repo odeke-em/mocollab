@@ -36,6 +36,8 @@ Fighter 1 2 3 0
 Bomber 1 3 2 0
 UNITS END
 POWER-UPS START
+Speed-PUP 22 26
+Health-PUP 27 22
 Health-PUP 28 21
 Speed-PUP 13 8
 Attack-PUP 15 9

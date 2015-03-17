@@ -475,20 +475,21 @@ class GUI(LayeredUpdates):
             'Attack-PUP': unit.attack_power_up.AttackPowerUp,
         }
 
-        for key, coords in mapping.items():
+        for key, coords_list in mapping.items():
             translator = powerup_translator.get(key, None)
             if translator is None:
                 raise Exception("%s is an unknown powerup"%(key))
 
-            x, y, *rest = coords
-            pup_unit = translator(
+            for coords in coords_list:
+                x, y, *rest = coords
+                pup_unit = translator(
                     team=0,
                     activate=True,
                     tile_x=int(x),
                     tile_y=int(y),
                     angle=90)
 
-            self.update_unit_rect(pup_unit)
+                self.update_unit_rect(pup_unit)
             # print('pup_unit', pup_unit)
         # print("mapping", mapping)
         
